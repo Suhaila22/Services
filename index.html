@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C;
+  --gold-light:#E8D49A;
+  --gold-dim:#7A5E20;
+  --navy:#0B1C2E;
+  --navy-mid:#142236;
+  --navy-light:#1D3354;
+  --cream:#F5F0E8;
+  --cream-dim:#E8E0D0;
+  --text-on-navy:#D6C9A8;
+  --text-muted:#8FA3B8;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--cream);min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem;border-bottom:0.5px solid rgba(201,168,76,0.15)}
+.logo{display:flex;flex-direction:column;line-height:1.1}
+.logo-main{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--gold);letter-spacing:0.08em}
+.logo-sub{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:transparent;border:0.5px solid var(--gold);color:var(--gold);padding:0.5rem 1.25rem;font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+.nav-cta:hover{background:var(--gold);color:var(--navy)}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;align-items:center;padding:0 3rem;gap:4rem;position:relative}
+.hero::before{content:'';position:absolute;right:0;top:0;width:50%;height:100%;background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-light) 100%);z-index:0}
+.hero-left{position:relative;z-index:1}
+.hero-eyebrow{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+h1{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:1rem}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-desc{font-size:0.95rem;line-height:1.8;color:var(--text-on-navy);max-width:440px;margin-bottom:2.5rem}
+.hero-badges{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem}
+.badge{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;border:0.5px solid rgba(201,168,76,0.4);color:var(--gold-light);padding:0.35rem 0.8rem}
+.hero-actions{display:flex;gap:1rem;align-items:center}
+.btn-primary{background:var(--gold);color:var(--navy);padding:0.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;transition:all 0.2s}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-ghost{background:transparent;border:0.5px solid rgba(201,168,76,0.5);color:var(--gold);padding:0.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--gold);background:rgba(201,168,76,0.08)}
+
+/* HERO RIGHT */
+.hero-right{position:relative;z-index:1;padding:3rem 2rem}
+.credential-card{background:rgba(255,255,255,0.04);border:0.5px solid rgba(201,168,76,0.2);padding:2rem;margin-bottom:1rem}
+.credential-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem}
+.credential-card p{font-size:0.8rem;color:var(--text-muted);line-height:1.6}
+.credential-card .highlight{color:var(--gold);font-size:0.75rem;letter-spacing:0.1em;margin-top:0.75rem;display:block}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.stat{text-align:center;padding:1rem;border:0.5px solid rgba(201,168,76,0.15)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold)}
+.stat-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:0.25rem}
+
+/* DIVIDER */
+.section-divider{display:flex;align-items:center;gap:1rem;padding:0 3rem;margin:3rem 0}
+.divider-line{flex:1;height:0.5px;background:rgba(201,168,76,0.2)}
+.divider-icon{color:var(--gold);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase}
+
+/* SERVICES */
+.services{padding:5rem 3rem}
+.section-header{margin-bottom:4rem}
+.section-eyebrow{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--cream);line-height:1.2}
+.section-title em{font-style:italic;color:var(--gold)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.service-card{border:0.5px solid rgba(201,168,76,0.2);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:border-color 0.3s,background 0.3s;cursor:default}
+.service-card::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.35s}
+.service-card:hover{border-color:rgba(201,168,76,0.5);background:rgba(201,168,76,0.04)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:rgba(201,168,76,0.15);position:absolute;top:1rem;right:1.5rem;line-height:1}
+.service-icon{width:2.5rem;height:2.5rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;border:0.5px solid rgba(201,168,76,0.4)}
+.service-icon svg{width:1.1rem;height:1.1rem;stroke:var(--gold);fill:none;stroke-width:1.5}
+.service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--cream);margin-bottom:0.75rem;line-height:1.2}
+.service-card p{font-size:0.82rem;color:var(--text-muted);line-height:1.8}
+.service-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.25rem}
+.stag{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;background:rgba(201,168,76,0.08);color:var(--gold-light);border:0.5px solid rgba(201,168,76,0.25);padding:0.25rem 0.6rem}
+
+/* DOMAINS */
+.domains{padding:4rem 3rem;background:var(--navy-mid)}
+.domains-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:3rem}
+.domain-item{border:0.5px solid rgba(201,168,76,0.15);padding:2rem 1.5rem;text-align:center;transition:all 0.25s}
+.domain-item:hover{border-color:var(--gold);background:rgba(201,168,76,0.06)}
+.domain-icon{font-size:1.5rem;margin-bottom:1rem;color:var(--gold)}
+.domain-item h4{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem;line-height:1.3}
+.domain-item p{font-size:0.7rem;color:var(--text-muted);line-height:1.6}
+
+/* WAITLIST */
+.waitlist-section{padding:6rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.waitlist-left h2{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:1.5rem}
+.waitlist-left h2 em{font-style:italic;color:var(--gold)}
+.waitlist-left p{font-size:0.9rem;color:var(--text-on-navy);line-height:1.9;margin-bottom:2rem}
+.perks{display:flex;flex-direction:column;gap:1rem}
+.perk{display:flex;gap:1rem;align-items:flex-start}
+.perk-dot{width:6px;height:6px;background:var(--gold);margin-top:0.45rem;flex-shrink:0}
+.perk-text{font-size:0.82rem;color:var(--text-on-navy);line-height:1.7}
+.perk-text strong{color:var(--cream);font-weight:500}
+
+.waitlist-form{background:rgba(255,255,255,0.03);border:0.5px solid rgba(201,168,76,0.25);padding:3rem}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem}
+.form-sub{font-size:0.78rem;color:var(--text-muted);margin-bottom:2rem;letter-spacing:0.05em}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.04);border:0.5px solid rgba(201,168,76,0.25);color:var(--cream);padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+.form-group select option{background:var(--navy);color:var(--cream)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.submit-btn{width:100%;background:var(--gold);color:var(--navy);border:none;padding:1rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;cursor:pointer;margin-top:0.5rem;transition:all 0.2s;position:relative}
+.submit-btn:hover{background:var(--gold-light)}
+.submit-btn:disabled{opacity:0.6;cursor:not-allowed}
+.form-note{font-size:0.7rem;color:var(--text-muted);margin-top:0.75rem;text-align:center}
+
+.success-msg{display:none;text-align:center;padding:2rem}
+.success-icon{width:3rem;height:3rem;border:0.5px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.success-msg h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--cream);margin-bottom:0.75rem}
+.success-msg p{font-size:0.85rem;color:var(--text-on-navy);line-height:1.8}
+.waitlist-count{display:inline-block;margin-top:1.5rem;font-size:0.75rem;letter-spacing:0.1em;color:var(--gold);border-bottom:0.5px solid rgba(201,168,76,0.4)}
+
+/* FOOTER */
+footer{border-top:0.5px solid rgba(201,168,76,0.15);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--gold)}
+.footer-copy{font-size:0.72rem;color:var(--text-muted)}
+
+/* COUNTER */
+.counter-bar{background:var(--navy-light);border-top:0.5px solid rgba(201,168,76,0.15);border-bottom:0.5px solid rgba(201,168,76,0.15);padding:0.9rem 3rem;display:flex;align-items:center;gap:2rem;overflow:hidden}
+.counter-item{display:flex;align-items:center;gap:0.75rem;white-space:nowrap}
+.counter-num{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold)}
+.counter-label{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)}
+.counter-sep{color:rgba(201,168,76,0.3);font-size:1rem}
+
+/* ANIM */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeInUp 0.7s ease forwards}
+.fade-in-2{animation:fadeInUp 0.7s 0.15s ease forwards;opacity:0}
+.fade-in-3{animation:fadeInUp 0.7s 0.3s ease forwards;opacity:0}
+.fade-in-4{animation:fadeInUp 0.7s 0.45s ease forwards;opacity:0}
+
+/* SPINNER */
+.spinner{display:none;width:16px;height:16px;border:2px solid var(--navy);border-top-color:transparent;border-radius:50%;animation:spin 0.6s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* LOADING STATE */
+.ai-response{margin-top:1rem;padding:1rem;border:0.5px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.04);display:none}
+.ai-response p{font-size:0.82rem;color:var(--text-on-navy);line-height:1.7}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <span class="logo-main">Dr. Eng. Suhaila Mohieldin</span>
+    <span class="logo-sub">Engineering &amp; AI Excellence</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="scrollTo('#services')">Services</a></li>
+    <li><a href="#" onclick="scrollTo('#domains')">Domains</a></li>
+    <li><a href="#" onclick="scrollTo('#waitlist')">Waitlist</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+</nav>
+
+<div class="counter-bar">
+  <div class="counter-item"><span class="counter-num">18+</span><span class="counter-label">Years Experience</span></div>
+  <span class="counter-sep">·</span>
+  <div class="counter-item"><span class="counter-num" id="waitlist-counter">0</span><span class="counter-label">On Waitlist</span></div>
+  <span class="counter-sep">·</span>
+  <div class="counter-item"><span class="counter-num">5</span><span class="counter-label">Engineering Domains</span></div>
+  <span class="counter-sep">·</span>
+  <div class="counter-item"><span class="counter-num">3</span><span class="counter-label">Service Pillars</span></div>
+</div>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow fade-in">Launching Soon — Training · Research · Projects</p>
+    <h1 class="fade-in-2">Where <em>Engineering</em><br>Meets Intelligence</h1>
+    <p class="hero-desc fade-in-3">Expert-led programmes in Biomedical &amp; Electronic Engineering, Control Systems, AI, and Data Analytics — bridging academia and industry at every level.</p>
+    <div class="hero-badges fade-in-3">
+      <span class="badge">Biomedical Eng.</span>
+      <span class="badge">Electronic Eng.</span>
+      <span class="badge">Control Systems</span>
+      <span class="badge">Artificial Intelligence</span>
+      <span class="badge">Data Analytics</span>
+      <span class="badge">Engineering Fundamentals</span>
+    </div>
+    <div class="hero-actions fade-in-4">
+      <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Reserve Your Place</button>
+      <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+    </div>
+  </div>
+  <div class="hero-right fade-in-3">
+    <div class="credential-card">
+      <h3>Dr. Eng. Suhaila Mohieldin</h3>
+      <p>Biomedical Engineering · Electronic Engineering<br>18+ years spanning technical education, healthcare informatics, AI in healthcare, and international engineering trade.</p>
+      <span class="highlight">PhD · certified trainer · Researcher · Bilingual Arabic/English</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-num">PhD</div><div class="stat-label">Academic Level</div></div>
+      <div class="stat"><div class="stat-num">UAE</div><div class="stat-label">Based in Sharjah</div></div>
+      <div class="stat"><div class="stat-num">AR/EN</div><div class="stat-label">Bilingual</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider">
+  <div class="divider-line"></div>
+  <span class="divider-icon">◆ Our Services ◆</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="services" id="services">
+  <div class="section-header">
+    <p class="section-eyebrow">Three Pillars of Excellence</p>
+    <h2 class="section-title">Training, <em>Research</em>,<br>and Applied Projects</h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+      <h3>Professional Training Programmes</h3>
+      <p>Structured, outcome-driven training in engineering fundamentals, AI applications, and data-driven decision making — from foundational to expert level.</p>
+      <div class="service-tags">
+        <span class="stag">AI</span>
+        <span class="stag">Biomedical Engineering</span>
+        <span class="stag">Signal and image Processing</span>
+        <span class="stag">Control Systems</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+      <h3>Applied Research &amp; Consultation</h3>
+      <p>Academic and industry research partnerships in biomedical engineering, AI-driven diagnostics, and systems automation. Rigorous methodology, publication-ready outputs.</p>
+      <div class="service-tags">
+        <span class="stag">Medical Imaging</span>
+        <span class="stag">ML Research</span>
+        <span class="stag">Data Analytics</span>
+        <span class="stag">Consultation</span>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></div>
+      <h3>Engineering Projects &amp; Supervision</h3>
+      <p>End-to-end project design, supervision, and delivery — including graduation projects, system prototypes, and industrial automation solutions.</p>
+      <div class="service-tags">
+        <span class="stag">Graduation Projects</span>
+        <span class="stag">Prototyping</span>
+        <span class="stag">System Design</span>
+        <span class="stag">Industry</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="domains" id="domains">
+  <p class="section-eyebrow">Engineering Domains</p>
+  <h2 class="section-title" style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--cream);margin-top:0.5rem">Five Fields of <em style="font-style:italic;color:var(--gold)">Deep Expertise</em></h2>
+  <div class="domains-grid">
+    <div class="domain-item">
+      <div class="domain-icon">⚕</div>
+      <h4>Biomedical Engineering</h4>
+      <p>Devices, biosignals, medical imaging, clinical systems</p>
+    </div>
+    <div class="domain-item">
+      <div class="domain-icon">⚡</div>
+      <h4>Electronic Engineering</h4>
+      <p>Circuits, embedded systems, sensors, PCB design</p>
+    </div>
+    <div class="domain-item">
+      <div class="domain-icon">⚙</div>
+      <h4>Control Engineering</h4>
+      <p>PID, automation, robotics, industrial control</p>
+    </div>
+    <div class="domain-item">
+      <div class="domain-icon">◈</div>
+      <h4>Artificial Intelligence</h4>
+      <p>ML, deep learning, NLP, AI in healthcare</p>
+    </div>
+    <div class="domain-item">
+      <div class="domain-icon">◉</div>
+      <h4>Data Analytics</h4>
+      <p>Big data, dashboards, predictive modelling</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider">
+  <div class="divider-line"></div>
+  <span class="divider-icon">◆ Join Us ◆</span>
+  <div class="divider-line"></div>
+</div>
+
+<section class="waitlist-section" id="waitlist">
+  <div class="waitlist-left">
+    <h2>Be the First to <em>Experience</em> the Difference</h2>
+    <p>We're preparing a suite of programmes and project collaborations launching soon. Join the waitlist to receive early access, founding-member rates, and priority booking when we open.</p>
+    <div class="perks">
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Early Access</strong> — first to know when programmes go live</div></div>
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Founding Member Rate</strong> — exclusive pricing for waitlist registrants</div></div>
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Priority Booking</strong> — reserved slots before public launch</div></div>
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Tailored Content</strong> — your interests shape our programme calendar</div></div>
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Bilingual Delivery</strong> — programmes available in Arabic and English</div></div>
+    </div>
+  </div>
+
+  <div class="waitlist-form">
+    <div id="form-container">
+      <h3 class="form-title">Reserve Your Place</h3>
+      <p class="form-sub">Takes less than 60 seconds · No obligation</p>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="fname" placeholder="Your name" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="femail" placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Organisation / Affiliation</label>
+          <input type="text" id="forg" placeholder="University, company, etc." />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Primary Interest</label>
+        <select id="finterest">
+          <option value="">Select a domain</option>
+          <option>Biomedical Engineering</option>
+          <option>Electronic Engineering</option>
+          <option>Control Engineering</option>
+          <option>Artificial Intelligence</option>
+          <option>Data Analytics</option>
+          <option>Engineering Fundamentals</option>
+          <option>Multiple / Not Sure Yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Service Type</label>
+        <select id="fservice">
+          <option value="">What are you looking for?</option>
+          <option>Training Programme</option>
+          <option>Research Collaboration</option>
+          <option>Project Supervision</option>
+          <option>Industry Consultation</option>
+          <option>Academic Graduation Projects</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Any specific goals or questions? (optional)</label>
+        <textarea id="fmessage" placeholder="Tell us a little about what you're looking to achieve..."></textarea>
+      </div>
+      <button class="submit-btn" id="submit-btn" onclick="submitWaitlist()">
+        <span id="btn-text">Join the Waitlist</span>
+        <div class="spinner" id="spinner"></div>
+      </button>
+      <div id="ai-response-box" class="ai-response"><p id="ai-response-text"></p></div>
+      <p class="form-note">Your information is kept private and never shared.</p>
+    </div>
+
+    <div class="success-msg" id="success-msg">
+      <div class="success-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>You're on the list.</h3>
+      <p>Thank you for registering. We'll be in touch with early access details and programme announcements as we approach launch.</p>
+      <span class="waitlist-count" id="position-text"></span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">Dr. Eng. Suhaila Mohieldin · Engineering &amp; AI Excellence</span>
+  <span class="footer-copy">© 2025 · UAE · Sharjah · Bilingual Arabic / English</span>
+</footer>
+
+<script>
+const STORAGE_KEY = 'dreng_waitlist';
+const COUNT_KEY = 'dreng_waitlist_count';
+
+async function getCount(){
+  try{
+    const r = await window.storage.get(COUNT_KEY,true);
+    return r ? parseInt(r.value)||0 : 0;
+  }catch{return 0}
+}
+
+async function updateCounter(){
+  const n = await getCount();
+  document.getElementById('waitlist-counter').textContent = n;
+}
+
+updateCounter();
+
+async function submitWaitlist(){
+  const name = document.getElementById('fname').value.trim();
+  const email = document.getElementById('femail').value.trim();
+  const org = document.getElementById('forg').value.trim();
+  const interest = document.getElementById('finterest').value;
+  const service = document.getElementById('fservice').value;
+  const message = document.getElementById('fmessage').value.trim();
+
+  if(!name||!email){alert('Please enter your name and email.');return;}
+  if(!/\S+@\S+\.\S+/.test(email)){alert('Please enter a valid email address.');return;}
+
+  const btn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+  const spinner = document.getElementById('spinner');
+  btn.disabled = true;
+  btnText.style.display = 'none';
+  spinner.style.display = 'block';
+
+  const entry = {name,email,org,interest,service,message,ts:new Date().toISOString()};
+
+  try{
+    await window.storage.set('entry:'+Date.now()+':'+email.replace(/[@.]/g,'_'), JSON.stringify(entry), false);
+    let count = await getCount();
+    count++;
+    await window.storage.set(COUNT_KEY, String(count), true);
+
+    let aiMsg = '';
+    try{
+      const prompt = `You are the welcome assistant for Dr. Eng. Suhaila Mohieldin's engineering and AI training service. 
+Write a warm, professional 2-sentence personalised welcome note to ${name}${org?' from '+org:''}, 
+who joined the waitlist interested in ${interest||'engineering and AI'} for ${service||'training and research'}. 
+Be specific and encouraging. No bullet points. No salutation needed.`;
+      const resp = await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:1000,
+          messages:[{role:'user',content:prompt}]
+        })
+      });
+      const data = await resp.json();
+      aiMsg = data.content && data.content[0] ? data.content[0].text : '';
+    }catch{}
+
+    btn.disabled = false;
+    btnText.style.display = 'block';
+    spinner.style.display = 'none';
+
+    if(aiMsg){
+      const box = document.getElementById('ai-response-box');
+      document.getElementById('ai-response-text').textContent = aiMsg;
+      box.style.display = 'block';
+      setTimeout(()=>{
+        document.getElementById('form-container').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+        document.getElementById('position-text').textContent = 'You are registrant #' + count + ' on the waitlist.';
+        document.getElementById('waitlist-counter').textContent = count;
+      },2200);
+    } else {
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+      document.getElementById('position-text').textContent = 'You are registrant #' + count + ' on the waitlist.';
+      document.getElementById('waitlist-counter').textContent = count;
+    }
+  }catch(e){
+    btn.disabled = false;
+    btnText.style.display = 'block';
+    spinner.style.display = 'none';
+    alert('Something went wrong. Please try again.');
+  }
+}
+</script>
+</body>
+</html>
