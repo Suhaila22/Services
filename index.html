@@ -390,8 +390,9 @@ const COUNT_KEY = 'dreng_waitlist_count';
 
 async function getCount(){
   try{
-    const r = await window.storage.get(COUNT_KEY,true);
-    return r ? parseInt(r.value)||0 : 0;
+    // محاولة جلب العداد المخزن محلياً في المتصفح للحفاظ على مرونة التجربة
+    const r = localStorage.getItem(COUNT_KEY);
+    return r ? parseInt(r)||0 : 0;
   }catch{return 0}
 }
 
@@ -400,7 +401,13 @@ async function updateCounter(){
   document.getElementById('waitlist-counter').textContent = n;
 }
 
+// تفعيل وتحديث العداد عند تحميل الصفحة مباشرة
 updateCounter();
+
+function scrollTo(selector) {
+  const el = document.querySelector(selector);
+  if(el) el.scrollIntoView({behavior:'smooth'});
+}
 
 async function submitWaitlist(){
   const name = document.getElementById('fname').value.trim();
@@ -416,62 +423,68 @@ async function submitWaitlist(){
   const btn = document.getElementById('submit-btn');
   const btnText = document.getElementById('btn-text');
   const spinner = document.getElementById('spinner');
+  
+  // تشغيل حالة التحميل (Loading UI)
   btn.disabled = true;
   btnText.style.display = 'none';
   spinner.style.display = 'block';
 
-  const entry = {name,email,org,interest,service,message,ts:new Date().toISOString()};
+  // -------------------------------------------------------------
+  // إعداد ربط البريد الإلكتروني عبر خدمة Web3Forms
+  // -------------------------------------------------------------
+  const ACCESS_TOKEN = "b0367ac4-0026-4e14-9f35-9215dca40a70"
+  
+  const payload = {
+    access_key: ACCESS_TOKEN,
+    subject: `New Waitlist Signup: ${name}`,
+    from_name: "Suhaila Excellence Platform",
+    "Full Name": name,
+    "Email Address": email,
+    "Organisation / Affiliation": org || "Not Specified",
+    "Primary Interest": interest || "Not Specified",
+    "Service Type": service || "Not Specified",
+    "Specific Goals / Message": message || "None Provided"
+  };
 
-  try{
-    await window.storage.set('entry:'+Date.now()+':'+email.replace(/[@.]/g,'_'), JSON.stringify(entry), false);
-    let count = await getCount();
-    count++;
-    await window.storage.set(COUNT_KEY, String(count), true);
+  try {
+    // إرسال البيانات بشكل آمن ومباشر دون التسبب بـ Crash في الصفحة
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
 
-    let aiMsg = '';
-    try{
-      const prompt = `You are the welcome assistant for Dr. Eng. Suhaila Mohieldin's engineering and AI training service. 
-Write a warm, professional 2-sentence personalised welcome note to ${name}${org?' from '+org:''}, 
-who joined the waitlist interested in ${interest||'engineering and AI'} for ${service||'training and research'}. 
-Be specific and encouraging. No bullet points. No salutation needed.`;
-      const resp = await fetch('https://api.anthropic.com/v1/messages',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          model:'claude-sonnet-4-20250514',
-          max_tokens:1000,
-          messages:[{role:'user',content:prompt}]
-        })
-      });
-      const data = await resp.json();
-      aiMsg = data.content && data.content[0] ? data.content[0].text : '';
-    }catch{}
+    const result = await response.json();
 
-    btn.disabled = false;
-    btnText.style.display = 'block';
-    spinner.style.display = 'none';
+    if (result.success) {
+      // حفظ النسخة محلياً وتحديث العداد لتجربة بصرية ممتازة للمستخدم
+      let count = await getCount();
+      count++;
+      localStorage.setItem(COUNT_KEY, String(count));
 
-    if(aiMsg){
-      const box = document.getElementById('ai-response-box');
-      document.getElementById('ai-response-text').textContent = aiMsg;
-      box.style.display = 'block';
-      setTimeout(()=>{
-        document.getElementById('form-container').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
-        document.getElementById('position-text').textContent = 'You are registrant #' + count + ' on the waitlist.';
-        document.getElementById('waitlist-counter').textContent = count;
-      },2200);
-    } else {
+      // إنهاء حالة التحميل وإظهار واجهة النجاح المدمجة بالكامل
+      btn.disabled = false;
+      btnText.style.display = 'block';
+      spinner.style.display = 'none';
+
       document.getElementById('form-container').style.display = 'none';
       document.getElementById('success-msg').style.display = 'block';
       document.getElementById('position-text').textContent = 'You are registrant #' + count + ' on the waitlist.';
       document.getElementById('waitlist-counter').textContent = count;
+    } else {
+      throw new Error(result.message || "Form submission failed on server.");
     }
-  }catch(e){
+
+  } catch(e) {
+    // إيقاف حالة التحميل وإرجاع حالة الزر لطبيعتها عند حدوث أي مشكلة تقنية
     btn.disabled = false;
     btnText.style.display = 'block';
     spinner.style.display = 'none';
-    alert('Something went wrong. Please try again.');
+    alert('Something went wrong. Please check your internet or configuration and try again.');
+    console.error("Submission Error Details:", e);
   }
 }
 </script>
