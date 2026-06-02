@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,29 +18,43 @@
   --text-on-navy:#D6C9A8;
   --text-muted:#8FA3B8;
 }
-body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--cream);min-height:100vh;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--cream);min-height:100vh;overflow-x:hidden;transition:font-family 0.3s}
+html[lang="ar"] body{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif}
+html[lang="ar"] .logo-main{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif;font-size:1rem}
+html[lang="ar"] h1,html[lang="ar"] .section-title,html[lang="ar"] .waitlist-left h2,html[lang="ar"] .credential-card h3,html[lang="ar"] .service-card h3,html[lang="ar"] .form-title,html[lang="ar"] .success-msg h3,html[lang="ar"] .domains h2{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif;font-style:normal}
+
+/* LANG TOGGLE */
+.lang-toggle{display:flex;align-items:center;gap:0;border:0.5px solid rgba(201,168,76,0.4);overflow:hidden;flex-shrink:0}
+.lang-btn{background:transparent;border:none;color:var(--text-muted);padding:0.45rem 0.9rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;line-height:1}
+.lang-btn.active{background:var(--gold);color:var(--navy);font-weight:500}
+.lang-btn:not(.active):hover{color:var(--gold)}
 
 /* NAV */
-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem;border-bottom:0.5px solid rgba(201,168,76,0.15)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem;border-bottom:0.5px solid rgba(201,168,76,0.15);gap:1.5rem}
 .logo{display:flex;flex-direction:column;line-height:1.1}
 .logo-main{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--gold);letter-spacing:0.08em}
 .logo-sub{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted)}
+.nav-center{display:flex;align-items:center;gap:2rem}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
 .nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:1rem}
 .nav-cta{background:transparent;border:0.5px solid var(--gold);color:var(--gold);padding:0.5rem 1.25rem;font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
 .nav-cta:hover{background:var(--gold);color:var(--navy)}
 
 /* HERO */
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;align-items:center;padding:0 3rem;gap:4rem;position:relative}
 .hero::before{content:'';position:absolute;right:0;top:0;width:50%;height:100%;background:linear-gradient(135deg,var(--navy-mid) 0%,var(--navy-light) 100%);z-index:0}
+html[lang="ar"] .hero::before{right:auto;left:0}
 .hero-left{position:relative;z-index:1}
 .hero-eyebrow{font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+html[lang="ar"] .hero-eyebrow{letter-spacing:0.05em}
 h1{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:1rem}
 h1 em{font-style:italic;color:var(--gold)}
 .hero-desc{font-size:0.95rem;line-height:1.8;color:var(--text-on-navy);max-width:440px;margin-bottom:2.5rem}
 .hero-badges{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem}
 .badge{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;border:0.5px solid rgba(201,168,76,0.4);color:var(--gold-light);padding:0.35rem 0.8rem}
+html[lang="ar"] .badge{letter-spacing:0.02em;font-size:0.7rem}
 .hero-actions{display:flex;gap:1rem;align-items:center}
 .btn-primary{background:var(--gold);color:var(--navy);padding:0.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;transition:all 0.2s}
 .btn-primary:hover{background:var(--gold-light)}
@@ -53,10 +67,12 @@ h1 em{font-style:italic;color:var(--gold)}
 .credential-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem}
 .credential-card p{font-size:0.8rem;color:var(--text-muted);line-height:1.6}
 .credential-card .highlight{color:var(--gold);font-size:0.75rem;letter-spacing:0.1em;margin-top:0.75rem;display:block}
+html[lang="ar"] .credential-card .highlight{letter-spacing:0.02em}
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
 .stat{text-align:center;padding:1rem;border:0.5px solid rgba(201,168,76,0.15)}
 .stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold)}
 .stat-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-top:0.25rem}
+html[lang="ar"] .stat-label{letter-spacing:0.02em}
 
 /* DIVIDER */
 .section-divider{display:flex;align-items:center;gap:1rem;padding:0 3rem;margin:3rem 0}
@@ -67,6 +83,7 @@ h1 em{font-style:italic;color:var(--gold)}
 .services{padding:5rem 3rem}
 .section-header{margin-bottom:4rem}
 .section-eyebrow{font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+html[lang="ar"] .section-eyebrow{letter-spacing:0.05em}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--cream);line-height:1.2}
 .section-title em{font-style:italic;color:var(--gold)}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
@@ -75,12 +92,14 @@ h1 em{font-style:italic;color:var(--gold)}
 .service-card:hover{border-color:rgba(201,168,76,0.5);background:rgba(201,168,76,0.04)}
 .service-card:hover::before{transform:scaleX(1)}
 .service-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:rgba(201,168,76,0.15);position:absolute;top:1rem;right:1.5rem;line-height:1}
+html[lang="ar"] .service-num{right:auto;left:1.5rem}
 .service-icon{width:2.5rem;height:2.5rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;border:0.5px solid rgba(201,168,76,0.4)}
 .service-icon svg{width:1.1rem;height:1.1rem;stroke:var(--gold);fill:none;stroke-width:1.5}
 .service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--cream);margin-bottom:0.75rem;line-height:1.2}
 .service-card p{font-size:0.82rem;color:var(--text-muted);line-height:1.8}
 .service-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.25rem}
 .stag{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;background:rgba(201,168,76,0.08);color:var(--gold-light);border:0.5px solid rgba(201,168,76,0.25);padding:0.25rem 0.6rem}
+html[lang="ar"] .stag{letter-spacing:0.02em;font-size:0.65rem}
 
 /* DOMAINS */
 .domains{padding:4rem 3rem;background:var(--navy-mid)}
@@ -89,6 +108,7 @@ h1 em{font-style:italic;color:var(--gold)}
 .domain-item:hover{border-color:var(--gold);background:rgba(201,168,76,0.06)}
 .domain-icon{font-size:1.5rem;margin-bottom:1rem;color:var(--gold)}
 .domain-item h4{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem;line-height:1.3}
+html[lang="ar"] .domain-item h4{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif;font-size:0.9rem}
 .domain-item p{font-size:0.7rem;color:var(--text-muted);line-height:1.6}
 
 /* WAITLIST */
@@ -107,12 +127,15 @@ h1 em{font-style:italic;color:var(--gold)}
 .form-sub{font-size:0.78rem;color:var(--text-muted);margin-bottom:2rem;letter-spacing:0.05em}
 .form-group{margin-bottom:1.25rem}
 .form-group label{display:block;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+html[lang="ar"] .form-group label{letter-spacing:0.05em}
 .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.04);border:0.5px solid rgba(201,168,76,0.25);color:var(--cream);padding:0.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.2s}
+html[lang="ar"] .form-group input,html[lang="ar"] .form-group select,html[lang="ar"] .form-group textarea{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
 .form-group select option{background:var(--navy);color:var(--cream)}
 .form-group textarea{resize:vertical;min-height:80px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .submit-btn{width:100%;background:var(--gold);color:var(--navy);border:none;padding:1rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;cursor:pointer;margin-top:0.5rem;transition:all 0.2s;position:relative}
+html[lang="ar"] .submit-btn{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif;letter-spacing:0.02em}
 .submit-btn:hover{background:var(--gold-light)}
 .submit-btn:disabled{opacity:0.6;cursor:not-allowed}
 .form-note{font-size:0.7rem;color:var(--text-muted);margin-top:0.75rem;text-align:center}
@@ -126,6 +149,7 @@ h1 em{font-style:italic;color:var(--gold)}
 /* FOOTER */
 footer{border-top:0.5px solid rgba(201,168,76,0.15);padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center}
 .footer-brand{font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--gold)}
+html[lang="ar"] .footer-brand{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif}
 .footer-copy{font-size:0.72rem;color:var(--text-muted)}
 
 /* COUNTER */
@@ -133,6 +157,7 @@ footer{border-top:0.5px solid rgba(201,168,76,0.15);padding:2.5rem 3rem;display:
 .counter-item{display:flex;align-items:center;gap:0.75rem;white-space:nowrap}
 .counter-num{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold)}
 .counter-label{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted)}
+html[lang="ar"] .counter-label{letter-spacing:0.02em}
 .counter-sep{color:rgba(201,168,76,0.3);font-size:1rem}
 
 /* ANIM */
@@ -142,121 +167,167 @@ footer{border-top:0.5px solid rgba(201,168,76,0.15);padding:2.5rem 3rem;display:
 .fade-in-3{animation:fadeInUp 0.7s 0.3s ease forwards;opacity:0}
 .fade-in-4{animation:fadeInUp 0.7s 0.45s ease forwards;opacity:0}
 
-/* SPINNER */
 .spinner{display:none;width:16px;height:16px;border:2px solid var(--navy);border-top-color:transparent;border-radius:50%;animation:spin 0.6s linear infinite;margin:0 auto}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* LOADING STATE */
-.ai-response{margin-top:1rem;padding:1rem;border:0.5px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.04);display:none}
-.ai-response p{font-size:0.82rem;color:var(--text-on-navy);line-height:1.7}
+/* Lang switch transition */
+[data-en],[data-ar]{transition:opacity 0.15s}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="logo">
-    <span class="logo-main">Dr. Eng. Suhaila Mohieldin</span>
-    <span class="logo-sub">Engineering &amp; AI Excellence</span>
+    <span class="logo-main">
+      <span data-en>Dr. Eng. Suhaila Mohieldin</span>
+      <span data-ar style="display:none">د. م. سهيلة محيي الدين</span>
+    </span>
+    <span class="logo-sub">
+      <span data-en>Engineering &amp; AI Excellence</span>
+      <span data-ar style="display:none">التميز في الهندسة والذكاء الاصطناعي</span>
+    </span>
   </div>
   <ul class="nav-links">
-    <li><a href="#" onclick="scrollTo('#services')">Services</a></li>
-    <li><a href="#" onclick="scrollTo('#domains')">Domains</a></li>
-    <li><a href="#" onclick="scrollTo('#waitlist')">Waitlist</a></li>
+    <li><a href="#" onclick="smoothScroll('#services');return false" data-en>Services</a><a href="#" onclick="smoothScroll('#services');return false" data-ar style="display:none">الخدمات</a></li>
+    <li><a href="#" onclick="smoothScroll('#domains');return false" data-en>Domains</a><a href="#" onclick="smoothScroll('#domains');return false" data-ar style="display:none">التخصصات</a></li>
+    <li><a href="#" onclick="smoothScroll('#waitlist');return false" data-en>Waitlist</a><a href="#" onclick="smoothScroll('#waitlist');return false" data-ar style="display:none">قائمة الانتظار</a></li>
   </ul>
-  <button class="nav-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-ar" onclick="setLang('ar')">AR</button>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+      <span data-en>Join Waitlist</span><span data-ar style="display:none">انضم للقائمة</span>
+    </button>
+  </div>
 </nav>
 
 <div class="counter-bar">
-  <div class="counter-item"><span class="counter-num">18+</span><span class="counter-label">Years Experience</span></div>
+  <div class="counter-item"><span class="counter-num">18+</span><span class="counter-label"><span data-en>Years Experience</span><span data-ar style="display:none">سنوات خبرة</span></span></div>
   <span class="counter-sep">·</span>
-  <div class="counter-item"><span class="counter-num" id="waitlist-counter">0</span><span class="counter-label">On Waitlist</span></div>
+  <div class="counter-item"><span class="counter-num" id="waitlist-counter">0</span><span class="counter-label"><span data-en>On Waitlist</span><span data-ar style="display:none">في قائمة الانتظار</span></span></div>
   <span class="counter-sep">·</span>
-  <div class="counter-item"><span class="counter-num">5</span><span class="counter-label">Engineering Domains</span></div>
+  <div class="counter-item"><span class="counter-num">5</span><span class="counter-label"><span data-en>Engineering Domains</span><span data-ar style="display:none">مجالات هندسية</span></span></div>
   <span class="counter-sep">·</span>
-  <div class="counter-item"><span class="counter-num">3</span><span class="counter-label">Service Pillars</span></div>
+  <div class="counter-item"><span class="counter-num">3</span><span class="counter-label"><span data-en>Service Pillars</span><span data-ar style="display:none">ركائز الخدمة</span></span></div>
 </div>
 
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow fade-in">Launching Soon — Training · Research · Projects</p>
-    <h1 class="fade-in-2">Where <em>Engineering</em><br>Meets Intelligence</h1>
-    <p class="hero-desc fade-in-3">Expert-led programmes in Biomedical &amp; Electronic Engineering, Control Systems, AI, and Data Analytics — bridging academia and industry at every level.</p>
+    <p class="hero-eyebrow fade-in">
+      <span data-en>Launching Soon — Training · Research · Projects</span>
+      <span data-ar style="display:none">قريباً — تدريب · بحث · مشاريع</span>
+    </p>
+    <h1 class="fade-in-2">
+      <span data-en>Where <em>Engineering</em><br>Meets Intelligence</span>
+      <span data-ar style="display:none">حيث تلتقي <em>الهندسة</em><br>بالذكاء</span>
+    </h1>
+    <p class="hero-desc fade-in-3">
+      <span data-en>Expert-led programmes in Biomedical &amp; Electronic Engineering, Control Systems, AI, and Data Analytics — bridging academia and industry at every level.</span>
+      <span data-ar style="display:none">برامج متخصصة في الهندسة الطبية والإلكترونية وأنظمة التحكم والذكاء الاصطناعي وتحليل البيانات — تجسر الفجوة بين الأوساط الأكاديمية والصناعية على كل المستويات.</span>
+    </p>
     <div class="hero-badges fade-in-3">
-      <span class="badge">Biomedical Eng.</span>
-      <span class="badge">Electronic Eng.</span>
-      <span class="badge">Control Systems</span>
-      <span class="badge">Artificial Intelligence</span>
-      <span class="badge">Data Analytics</span>
-      <span class="badge">Engineering Fundamentals</span>
+      <span class="badge"><span data-en>Biomedical Eng.</span><span data-ar style="display:none">هندسة طبية</span></span>
+      <span class="badge"><span data-en>Electronic Eng.</span><span data-ar style="display:none">هندسة إلكترونية</span></span>
+      <span class="badge"><span data-en>Control Systems</span><span data-ar style="display:none">أنظمة التحكم</span></span>
+      <span class="badge"><span data-en>Artificial Intelligence</span><span data-ar style="display:none">الذكاء الاصطناعي</span></span>
+      <span class="badge"><span data-en>Data Analytics</span><span data-ar style="display:none">تحليل البيانات</span></span>
+      <span class="badge"><span data-en>Engineering Fundamentals</span><span data-ar style="display:none">أساسيات الهندسة</span></span>
     </div>
     <div class="hero-actions fade-in-4">
-      <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Reserve Your Place</button>
-      <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+      <button class="btn-primary" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+        <span data-en>Reserve Your Place</span><span data-ar style="display:none">احجز مكانك</span>
+      </button>
+      <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+        <span data-en>Explore Services</span><span data-ar style="display:none">استكشف الخدمات</span>
+      </button>
     </div>
   </div>
   <div class="hero-right fade-in-3">
     <div class="credential-card">
-      <h3>Dr. Eng. Suhaila Mohieldin</h3>
-      <p>Biomedical Engineering · Electronic Engineering<br>18+ years spanning technical education, healthcare informatics, AI in healthcare, and international engineering trade.</p>
-      <span class="highlight">PhD · certified trainer · Researcher · Bilingual Arabic/English</span>
+      <h3>
+        <span data-en>Dr. Eng. Suhaila Mohieldin</span>
+        <span data-ar style="display:none">د. م. سهيلة محيي الدين</span>
+      </h3>
+      <p>
+        <span data-en>Biomedical Engineering · Electronic Engineering<br>18+ years spanning technical education, healthcare informatics, AI in healthcare, and international engineering trade.</span>
+        <span data-ar style="display:none">هندسة طبية · هندسة إلكترونية<br>أكثر من 18 عاماً في التعليم التقني ومعلوماتية الرعاية الصحية والذكاء الاصطناعي في الرعاية الصحية والتجارة الهندسية الدولية.</span>
+      </p>
+      <span class="highlight">
+        <span data-en>PhD · certified trainer · Researcher · Bilingual Arabic/English</span>
+        <span data-ar style="display:none">دكتوراه · مدربة معتمدة · باحثة · ثنائية اللغة عربي/إنجليزي</span>
+      </span>
     </div>
     <div class="stat-row">
-      <div class="stat"><div class="stat-num">PhD</div><div class="stat-label">Academic Level</div></div>
-      <div class="stat"><div class="stat-num">UAE</div><div class="stat-label">Based in Sharjah</div></div>
-      <div class="stat"><div class="stat-num">AR/EN</div><div class="stat-label">Bilingual</div></div>
+      <div class="stat"><div class="stat-num">PhD</div><div class="stat-label"><span data-en>Academic Level</span><span data-ar style="display:none">المستوى الأكاديمي</span></div></div>
+      <div class="stat"><div class="stat-num">UAE</div><div class="stat-label"><span data-en>Based in Sharjah</span><span data-ar style="display:none">مقيمة في الشارقة</span></div></div>
+      <div class="stat"><div class="stat-num">AR/EN</div><div class="stat-label"><span data-en>Bilingual</span><span data-ar style="display:none">ثنائية اللغة</span></div></div>
     </div>
   </div>
 </section>
 
 <div class="section-divider">
   <div class="divider-line"></div>
-  <span class="divider-icon">◆ Our Services ◆</span>
+  <span class="divider-icon">◆ <span data-en>Our Services</span><span data-ar style="display:none">خدماتنا</span> ◆</span>
   <div class="divider-line"></div>
 </div>
 
 <section class="services" id="services">
   <div class="section-header">
-    <p class="section-eyebrow">Three Pillars of Excellence</p>
-    <h2 class="section-title">Training, <em>Research</em>,<br>and Applied Projects</h2>
+    <p class="section-eyebrow"><span data-en>Three Pillars of Excellence</span><span data-ar style="display:none">ثلاثة ركائز للتميز</span></p>
+    <h2 class="section-title">
+      <span data-en>Training, <em>Research</em>,<br>and Applied Projects</span>
+      <span data-ar style="display:none">التدريب، <em>البحث</em>،<br>والمشاريع التطبيقية</span>
+    </h2>
   </div>
   <div class="services-grid">
 
     <div class="service-card">
       <span class="service-num">01</span>
       <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-      <h3>Professional Training Programmes</h3>
-      <p>Structured, outcome-driven training in engineering fundamentals, AI applications, and data-driven decision making — from foundational to expert level.</p>
+      <h3><span data-en>Professional Training Programmes</span><span data-ar style="display:none">برامج التدريب المهني</span></h3>
+      <p>
+        <span data-en>Structured, outcome-driven training in engineering fundamentals, AI applications, and data-driven decision making — from foundational to expert level.</span>
+        <span data-ar style="display:none">تدريب منظم وموجه نحو النتائج في أساسيات الهندسة وتطبيقات الذكاء الاصطناعي واتخاذ القرار المبني على البيانات — من المستوى التأسيسي إلى الخبراء.</span>
+      </p>
       <div class="service-tags">
-        <span class="stag">AI</span>
-        <span class="stag">Biomedical Engineering</span>
-        <span class="stag">Signal and image Processing</span>
-        <span class="stag">Control Systems</span>
+        <span class="stag"><span data-en>AI</span><span data-ar style="display:none">ذكاء اصطناعي</span></span>
+        <span class="stag"><span data-en>Biomedical Engineering</span><span data-ar style="display:none">هندسة طبية</span></span>
+        <span class="stag"><span data-en>Signal & Image Processing</span><span data-ar style="display:none">معالجة الإشارات والصور</span></span>
+        <span class="stag"><span data-en>Control Systems</span><span data-ar style="display:none">أنظمة التحكم</span></span>
       </div>
     </div>
 
     <div class="service-card">
       <span class="service-num">02</span>
       <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-      <h3>Applied Research &amp; Consultation</h3>
-      <p>Academic and industry research partnerships in biomedical engineering, AI-driven diagnostics, and systems automation. Rigorous methodology, publication-ready outputs.</p>
+      <h3><span data-en>Applied Research &amp; Consultation</span><span data-ar style="display:none">البحث التطبيقي والاستشارات</span></h3>
+      <p>
+        <span data-en>Academic and industry research partnerships in biomedical engineering, AI-driven diagnostics, and systems automation. Rigorous methodology, publication-ready outputs.</span>
+        <span data-ar style="display:none">شراكات بحثية أكاديمية وصناعية في الهندسة الطبية والتشخيص المدعوم بالذكاء الاصطناعي وأتمتة الأنظمة. منهجية صارمة ومخرجات جاهزة للنشر.</span>
+      </p>
       <div class="service-tags">
-        <span class="stag">Medical Imaging</span>
-        <span class="stag">ML Research</span>
-        <span class="stag">Data Analytics</span>
-        <span class="stag">Consultation</span>
+        <span class="stag"><span data-en>Medical Imaging</span><span data-ar style="display:none">تصوير طبي</span></span>
+        <span class="stag"><span data-en>ML Research</span><span data-ar style="display:none">بحث تعلم الآلة</span></span>
+        <span class="stag"><span data-en>Data Analytics</span><span data-ar style="display:none">تحليل البيانات</span></span>
+        <span class="stag"><span data-en>Consultation</span><span data-ar style="display:none">استشارات</span></span>
       </div>
     </div>
 
     <div class="service-card">
       <span class="service-num">03</span>
       <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></div>
-      <h3>Engineering Projects &amp; Supervision</h3>
-      <p>End-to-end project design, supervision, and delivery — including graduation projects, system prototypes, and industrial automation solutions.</p>
+      <h3><span data-en>Engineering Projects &amp; Supervision</span><span data-ar style="display:none">المشاريع الهندسية والإشراف</span></h3>
+      <p>
+        <span data-en>End-to-end project design, supervision, and delivery — including graduation projects, system prototypes, and industrial automation solutions.</span>
+        <span data-ar style="display:none">تصميم المشاريع والإشراف عليها وتسليمها من الألف إلى الياء — بما يشمل مشاريع التخرج ونماذج الأنظمة وحلول الأتمتة الصناعية.</span>
+      </p>
       <div class="service-tags">
-        <span class="stag">Graduation Projects</span>
-        <span class="stag">Prototyping</span>
-        <span class="stag">System Design</span>
-        <span class="stag">Industry</span>
+        <span class="stag"><span data-en>Graduation Projects</span><span data-ar style="display:none">مشاريع تخرج</span></span>
+        <span class="stag"><span data-en>Prototyping</span><span data-ar style="display:none">بناء النماذج</span></span>
+        <span class="stag"><span data-en>System Design</span><span data-ar style="display:none">تصميم الأنظمة</span></span>
+        <span class="stag"><span data-en>Industry</span><span data-ar style="display:none">صناعة</span></span>
       </div>
     </div>
 
@@ -264,153 +335,215 @@ footer{border-top:0.5px solid rgba(201,168,76,0.15);padding:2.5rem 3rem;display:
 </section>
 
 <section class="domains" id="domains">
-  <p class="section-eyebrow">Engineering Domains</p>
-  <h2 class="section-title" style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--cream);margin-top:0.5rem">Five Fields of <em style="font-style:italic;color:var(--gold)">Deep Expertise</em></h2>
+  <p class="section-eyebrow"><span data-en>Engineering Domains</span><span data-ar style="display:none">المجالات الهندسية</span></p>
+  <h2 class="section-title" style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--cream);margin-top:0.5rem">
+    <span data-en>Five Fields of <em style="font-style:italic;color:var(--gold)">Deep Expertise</em></span>
+    <span data-ar style="display:none">خمسة مجالات من <em style="font-style:normal;color:var(--gold)">الخبرة العميقة</em></span>
+  </h2>
   <div class="domains-grid">
     <div class="domain-item">
       <div class="domain-icon">⚕</div>
-      <h4>Biomedical Engineering</h4>
-      <p>Devices, biosignals, medical imaging, clinical systems</p>
+      <h4><span data-en>Biomedical Engineering</span><span data-ar style="display:none">الهندسة الطبية</span></h4>
+      <p><span data-en>Devices, biosignals, medical imaging, clinical systems</span><span data-ar style="display:none">أجهزة، إشارات حيوية، تصوير طبي، أنظمة سريرية</span></p>
     </div>
     <div class="domain-item">
       <div class="domain-icon">⚡</div>
-      <h4>Electronic Engineering</h4>
-      <p>Circuits, embedded systems, sensors, PCB design</p>
+      <h4><span data-en>Electronic Engineering</span><span data-ar style="display:none">الهندسة الإلكترونية</span></h4>
+      <p><span data-en>Circuits, embedded systems, sensors, PCB design</span><span data-ar style="display:none">دوائر، أنظمة مدمجة، مستشعرات، تصميم PCB</span></p>
     </div>
     <div class="domain-item">
       <div class="domain-icon">⚙</div>
-      <h4>Control Engineering</h4>
-      <p>PID, automation, robotics, industrial control</p>
+      <h4><span data-en>Control Engineering</span><span data-ar style="display:none">هندسة التحكم</span></h4>
+      <p><span data-en>PID, automation, robotics, industrial control</span><span data-ar style="display:none">PID، أتمتة، روبوتات، تحكم صناعي</span></p>
     </div>
     <div class="domain-item">
       <div class="domain-icon">◈</div>
-      <h4>Artificial Intelligence</h4>
-      <p>ML, deep learning, NLP, AI in healthcare</p>
+      <h4><span data-en>Artificial Intelligence</span><span data-ar style="display:none">الذكاء الاصطناعي</span></h4>
+      <p><span data-en>ML, deep learning, NLP, AI in healthcare</span><span data-ar style="display:none">تعلم الآلة، التعلم العميق، معالجة اللغة، الذكاء الاصطناعي في الرعاية الصحية</span></p>
     </div>
     <div class="domain-item">
       <div class="domain-icon">◉</div>
-      <h4>Data Analytics</h4>
-      <p>Big data, dashboards, predictive modelling</p>
+      <h4><span data-en>Data Analytics</span><span data-ar style="display:none">تحليل البيانات</span></h4>
+      <p><span data-en>Big data, dashboards, predictive modelling</span><span data-ar style="display:none">بيانات ضخمة، لوحات بيانات، نمذجة تنبؤية</span></p>
     </div>
   </div>
 </section>
 
 <div class="section-divider">
   <div class="divider-line"></div>
-  <span class="divider-icon">◆ Join Us ◆</span>
+  <span class="divider-icon">◆ <span data-en>Join Us</span><span data-ar style="display:none">انضم إلينا</span> ◆</span>
   <div class="divider-line"></div>
 </div>
 
 <section class="waitlist-section" id="waitlist">
   <div class="waitlist-left">
-    <h2>Be the First to <em>Experience</em> the Difference</h2>
-    <p>We're preparing a suite of programmes and project collaborations launching soon. Join the waitlist to receive early access, founding-member rates, and priority booking when we open.</p>
+    <h2>
+      <span data-en>Be the First to <em>Experience</em> the Difference</span>
+      <span data-ar style="display:none">كن أول من <em>يختبر</em> الفارق</span>
+    </h2>
+    <p>
+      <span data-en>We're preparing a suite of programmes and project collaborations launching soon. Join the waitlist to receive early access, founding-member rates, and priority booking when we open.</span>
+      <span data-ar style="display:none">نُعِدّ مجموعة من البرامج وتعاونات المشاريع التي ستُطلَق قريباً. انضم لقائمة الانتظار للحصول على وصول مبكر وأسعار خاصة بالأعضاء المؤسسين وحجز أولوية عند الإطلاق.</span>
+    </p>
     <div class="perks">
-      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Early Access</strong> — first to know when programmes go live</div></div>
-      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Founding Member Rate</strong> — exclusive pricing for waitlist registrants</div></div>
-      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Priority Booking</strong> — reserved slots before public launch</div></div>
-      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Tailored Content</strong> — your interests shape our programme calendar</div></div>
-      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong>Bilingual Delivery</strong> — programmes available in Arabic and English</div></div>
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong><span data-en>Early Access</span><span data-ar style="display:none">وصول مبكر</span></strong> — <span data-en>first to know when programmes go live</span><span data-ar style="display:none">أول من يعلم عند إطلاق البرامج</span></div></div>
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong><span data-en>Founding Member Rate</span><span data-ar style="display:none">سعر العضو المؤسس</span></strong> — <span data-en>exclusive pricing for waitlist registrants</span><span data-ar style="display:none">أسعار حصرية للمسجلين في قائمة الانتظار</span></div></div>
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong><span data-en>Priority Booking</span><span data-ar style="display:none">حجز أولوية</span></strong> — <span data-en>reserved slots before public launch</span><span data-ar style="display:none">مقاعد محجوزة قبل الإطلاق العام</span></div></div>
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong><span data-en>Tailored Content</span><span data-ar style="display:none">محتوى مخصص</span></strong> — <span data-en>your interests shape our programme calendar</span><span data-ar style="display:none">اهتماماتك تشكّل تقويم برامجنا</span></div></div>
+      <div class="perk"><div class="perk-dot"></div><div class="perk-text"><strong><span data-en>Bilingual Delivery</span><span data-ar style="display:none">تقديم ثنائي اللغة</span></strong> — <span data-en>programmes available in Arabic and English</span><span data-ar style="display:none">البرامج متاحة بالعربية والإنجليزية</span></div></div>
     </div>
   </div>
 
   <div class="waitlist-form">
     <div id="form-container">
-      <h3 class="form-title">Reserve Your Place</h3>
-      <p class="form-sub">Takes less than 60 seconds · No obligation</p>
+      <h3 class="form-title"><span data-en>Reserve Your Place</span><span data-ar style="display:none">احجز مكانك</span></h3>
+      <p class="form-sub"><span data-en>Takes less than 60 seconds · No obligation</span><span data-ar style="display:none">أقل من 60 ثانية · بدون أي التزام</span></p>
       <div class="form-group">
-        <label>Full Name</label>
+        <label><span data-en>Full Name</span><span data-ar style="display:none">الاسم الكامل</span></label>
         <input type="text" id="fname" placeholder="Your name" />
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Email Address</label>
+          <label><span data-en>Email Address</span><span data-ar style="display:none">البريد الإلكتروني</span></label>
           <input type="email" id="femail" placeholder="you@example.com" />
         </div>
         <div class="form-group">
-          <label>Organisation / Affiliation</label>
+          <label><span data-en>Organisation / Affiliation</span><span data-ar style="display:none">الجهة / الانتماء</span></label>
           <input type="text" id="forg" placeholder="University, company, etc." />
         </div>
       </div>
       <div class="form-group">
-        <label>Primary Interest</label>
+        <label><span data-en>Primary Interest</span><span data-ar style="display:none">الاهتمام الرئيسي</span></label>
         <select id="finterest">
-          <option value="">Select a domain</option>
-          <option>Biomedical Engineering</option>
-          <option>Electronic Engineering</option>
-          <option>Control Engineering</option>
-          <option>Artificial Intelligence</option>
-          <option>Data Analytics</option>
-          <option>Engineering Fundamentals</option>
-          <option>Multiple / Not Sure Yet</option>
+          <option value=""><span data-en>Select a domain</span></option>
+          <option value="Biomedical Engineering"><span data-en>Biomedical Engineering</span></option>
+          <option value="Electronic Engineering">Electronic Engineering</option>
+          <option value="Control Engineering">Control Engineering</option>
+          <option value="Artificial Intelligence">Artificial Intelligence</option>
+          <option value="Data Analytics">Data Analytics</option>
+          <option value="Engineering Fundamentals">Engineering Fundamentals</option>
+          <option value="Multiple / Not Sure Yet">Multiple / Not Sure Yet</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Service Type</label>
+        <label><span data-en>Service Type</span><span data-ar style="display:none">نوع الخدمة</span></label>
         <select id="fservice">
-          <option value="">What are you looking for?</option>
-          <option>Training Programme</option>
-          <option>Research Collaboration</option>
-          <option>Project Supervision</option>
-          <option>Industry Consultation</option>
-          <option>Academic Graduation Projects</option>
-          <option>Academic Course</option>
+          <option value="">Select service type</option>
+          <option value="Training Programme">Training Programme</option>
+          <option value="Research Collaboration">Research Collaboration</option>
+          <option value="Project Supervision">Project Supervision</option>
+          <option value="Industry Consultation">Industry Consultation</option>
+          <option value="Academic Graduation Projects">Academic Graduation Projects</option>
+          <option value="Academic Course">Academic Course</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Any specific goals or questions? (optional)</label>
+        <label><span data-en>Any specific goals or questions? (optional)</span><span data-ar style="display:none">أهداف أو أسئلة محددة؟ (اختياري)</span></label>
         <textarea id="fmessage" placeholder="Tell us a little about what you're looking to achieve..."></textarea>
       </div>
       <button class="submit-btn" id="submit-btn" onclick="submitWaitlist()">
-        <span id="btn-text">Join the Waitlist</span>
+        <span id="btn-text"><span data-en>Join the Waitlist</span><span data-ar style="display:none">انضم لقائمة الانتظار</span></span>
         <div class="spinner" id="spinner"></div>
       </button>
-      <div id="ai-response-box" class="ai-response"><p id="ai-response-text"></p></div>
-      <p class="form-note">Your information is kept private and never shared.</p>
+      <p class="form-note"><span data-en>Your information is kept private and never shared.</span><span data-ar style="display:none">معلوماتك تبقى خاصة ولن تُشارَك أبداً.</span></p>
     </div>
 
     <div class="success-msg" id="success-msg">
       <div class="success-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h3>You're on the list.</h3>
-      <p>Thank you for registering. We'll be in touch with early access details and programme announcements as we approach launch.</p>
+      <h3><span data-en>You're on the list.</span><span data-ar style="display:none">أنت على القائمة.</span></h3>
+      <p><span data-en>Thank you for registering. We'll be in touch with early access details and programme announcements as we approach launch.</span><span data-ar style="display:none">شكراً لتسجيلك. سنتواصل معك بتفاصيل الوصول المبكر وإعلانات البرامج عند اقتراب الإطلاق.</span></p>
       <span class="waitlist-count" id="position-text"></span>
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="footer-brand">Dr. Eng. Suhaila Mohieldin · Engineering &amp; AI Excellence</span>
-  <span class="footer-copy">© 2025 · UAE · Sharjah · Bilingual Arabic / English</span>
+  <span class="footer-brand">
+    <span data-en>Dr. Eng. Suhaila Mohieldin · Engineering &amp; AI Excellence</span>
+    <span data-ar style="display:none">د. م. سهيلة محيي الدين · التميز في الهندسة والذكاء الاصطناعي</span>
+  </span>
+  <span class="footer-copy">
+    <span data-en>© 2025 · UAE · Sharjah · Bilingual Arabic / English</span>
+    <span data-ar style="display:none">© 2025 · الإمارات · الشارقة · عربي / إنجليزي</span>
+  </span>
 </footer>
 
 <script>
-const STORAGE_KEY = 'dreng_waitlist';
+// ─── Language System ───────────────────────────────────────────────
+let currentLang = localStorage.getItem('dreng_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('dreng_lang', lang);
+
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+  // Toggle EN/AR elements
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.style.display = lang === 'en' ? '' : 'none';
+  });
+  document.querySelectorAll('[data-ar]').forEach(el => {
+    el.style.display = lang === 'ar' ? '' : 'none';
+  });
+
+  // Update button states
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+
+  // Update form placeholders
+  updatePlaceholders(lang);
+}
+
+function updatePlaceholders(lang) {
+  const placeholders = {
+    en: {
+      fname: 'Your name',
+      femail: 'you@example.com',
+      forg: 'University, company, etc.',
+      fmessage: 'Tell us a little about what you\'re looking to achieve...'
+    },
+    ar: {
+      fname: 'اسمك الكامل',
+      femail: 'you@example.com',
+      forg: 'الجامعة، الشركة، إلخ...',
+      fmessage: 'أخبرنا قليلاً عمّا تسعى لتحقيقه...'
+    }
+  };
+  const p = placeholders[lang];
+  document.getElementById('fname').placeholder = p.fname;
+  document.getElementById('femail').placeholder = p.femail;
+  document.getElementById('forg').placeholder = p.forg;
+  document.getElementById('fmessage').placeholder = p.fmessage;
+
+  // Update select first options
+  const finterest = document.getElementById('finterest');
+  const fservice = document.getElementById('fservice');
+  if (finterest.options[0]) finterest.options[0].text = lang === 'ar' ? 'اختر مجالاً' : 'Select a domain';
+  if (fservice.options[0]) fservice.options[0].text = lang === 'ar' ? 'اختر نوع الخدمة' : 'Select service type';
+}
+
+// ─── Waitlist Counter ───────────────────────────────────────────────
 const COUNT_KEY = 'dreng_waitlist_count';
 
-async function getCount(){
-  try{
-    // محاولة جلب العداد المخزن محلياً في المتصفح للحفاظ على مرونة التجربة
-    const r = localStorage.getItem(COUNT_KEY);
-    return r ? parseInt(r)||0 : 0;
-  }catch{return 0}
+function getCount() {
+  try { return parseInt(localStorage.getItem(COUNT_KEY)) || 0; } catch { return 0; }
 }
 
-async function updateCounter(){
-  const n = await getCount();
-  document.getElementById('waitlist-counter').textContent = n;
+function updateCounter() {
+  document.getElementById('waitlist-counter').textContent = getCount();
 }
 
-// تفعيل وتحديث العداد عند تحميل الصفحة مباشرة
-updateCounter();
-
-function scrollTo(selector) {
+function smoothScroll(selector) {
   const el = document.querySelector(selector);
-  if(el) el.scrollIntoView({behavior:'smooth'});
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
-async function submitWaitlist(){
+// ─── Form Submit ────────────────────────────────────────────────────
+async function submitWaitlist() {
   const name = document.getElementById('fname').value.trim();
   const email = document.getElementById('femail').value.trim();
   const org = document.getElementById('forg').value.trim();
@@ -418,23 +551,25 @@ async function submitWaitlist(){
   const service = document.getElementById('fservice').value;
   const message = document.getElementById('fmessage').value.trim();
 
-  if(!name||!email){alert('Please enter your name and email.');return;}
-  if(!/\S+@\S+\.\S+/.test(email)){alert('Please enter a valid email address.');return;}
+  const alertMsg = currentLang === 'ar'
+    ? 'يرجى إدخال الاسم والبريد الإلكتروني.'
+    : 'Please enter your name and email.';
+  const alertEmail = currentLang === 'ar'
+    ? 'يرجى إدخال بريد إلكتروني صحيح.'
+    : 'Please enter a valid email address.';
+
+  if (!name || !email) { alert(alertMsg); return; }
+  if (!/\S+@\S+\.\S+/.test(email)) { alert(alertEmail); return; }
 
   const btn = document.getElementById('submit-btn');
   const btnText = document.getElementById('btn-text');
   const spinner = document.getElementById('spinner');
-  
-  // تشغيل حالة التحميل (Loading UI)
+
   btn.disabled = true;
   btnText.style.display = 'none';
   spinner.style.display = 'block';
 
-  // -------------------------------------------------------------
-  // إعداد ربط البريد الإلكتروني عبر خدمة Web3Forms
-  // -------------------------------------------------------------
-  const ACCESS_TOKEN = "b0367ac4-0026-4e14-9f35-9215dca40a70"
-  
+  const ACCESS_TOKEN = "b0367ac4-0026-4e14-9f35-9215dca40a70";
   const payload = {
     access_key: ACCESS_TOKEN,
     subject: `New Waitlist Signup: ${name}`,
@@ -444,50 +579,49 @@ async function submitWaitlist(){
     "Organisation / Affiliation": org || "Not Specified",
     "Primary Interest": interest || "Not Specified",
     "Service Type": service || "Not Specified",
-    "Specific Goals / Message": message || "None Provided"
+    "Specific Goals / Message": message || "None Provided",
+    "Language": currentLang === 'ar' ? 'Arabic' : 'English'
   };
 
   try {
-    // إرسال البيانات بشكل آمن ومباشر دون التسبب بـ Crash في الصفحة
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify(payload)
     });
-
     const result = await response.json();
-
     if (result.success) {
-      // حفظ النسخة محلياً وتحديث العداد لتجربة بصرية ممتازة للمستخدم
-      let count = await getCount();
+      let count = getCount();
       count++;
       localStorage.setItem(COUNT_KEY, String(count));
-
-      // إنهاء حالة التحميل وإظهار واجهة النجاح المدمجة بالكامل
       btn.disabled = false;
       btnText.style.display = 'block';
       spinner.style.display = 'none';
-
       document.getElementById('form-container').style.display = 'none';
       document.getElementById('success-msg').style.display = 'block';
-      document.getElementById('position-text').textContent = 'You are registrant #' + count + ' on the waitlist.';
+      const posText = currentLang === 'ar'
+        ? `أنت المسجل رقم ${count} في قائمة الانتظار.`
+        : `You are registrant #${count} on the waitlist.`;
+      document.getElementById('position-text').textContent = posText;
       document.getElementById('waitlist-counter').textContent = count;
     } else {
-      throw new Error(result.message || "Form submission failed on server.");
+      throw new Error(result.message || "Submission failed.");
     }
-
-  } catch(e) {
-    // إيقاف حالة التحميل وإرجاع حالة الزر لطبيعتها عند حدوث أي مشكلة تقنية
+  } catch (e) {
     btn.disabled = false;
     btnText.style.display = 'block';
     spinner.style.display = 'none';
-    alert('Something went wrong. Please check your internet or configuration and try again.');
-    console.error("Submission Error Details:", e);
+    const errMsg = currentLang === 'ar'
+      ? 'حدث خطأ ما. يرجى التحقق من الاتصال والمحاولة مرة أخرى.'
+      : 'Something went wrong. Please check your internet and try again.';
+    alert(errMsg);
+    console.error("Submission Error:", e);
   }
 }
+
+// ─── Init ────────────────────────────────────────────────────────────
+updateCounter();
+setLang(currentLang);
 </script>
 </body>
 </html>
